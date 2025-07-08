@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Malla Curricular - Comunicación Social UNC</title>
+<style>
+  :root {
+    --teorica: #cceeff;
+    --practica: #ffd6e7;
+    --complementaria: #ebacdd;
+    --electiva: #fd99c3;
+    --profesional: #e4e2d8;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  body {
+    margin: 0; padding: 0;
+    background: #fdfdfd; color: #333;
+  }
+  header {
+    background: #f7c8d1;
+    color: #5a3b45;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+  }
+  .legend {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 0.8rem;
+    color: #333;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+  .color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 0.3rem;
+  }
+  .color-teorica { background: var(--teorica); }
+  .color-practica { background: var(--practica); }
+  .color-complementaria { background: var(--complementaria); }
+  .color-electiva { background: var(--electiva); }
+  .color-profesional { background: var(--profesional); }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 8px;
+    background: #eee;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+  .tab {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 0.7rem;
+    border: 3px solid transparent;
+    user-select: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .tab.active {
+    background: white;
+    border-color: #f7c8d1;
+  }
+  .content {
+    display: none;
+    padding: 1rem;
+  }
+  .content.active {
+    display: block;
+  }
+  .materia {
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background 0.3s, opacity 0.3s, text-decoration 0.3s;
+    cursor: pointer;
+  }
+  .materia.teorica { background: var(--teorica); }
+  .materia.practica { background: var(--practica); }
+  .materia.complementaria { background: var(--complementaria); }
+  .materia.electiva { background: var(--electiva); }
+  .materia.profesional { background: var(--profesional); }
+  .materia.aprobada {
+    text-decoration: line-through;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  Malla Curricular - Comunicación Social UNC
+  <div class="legend">
+    <div class="legend-item"><div class="color-box color-teorica"></div> Teórica</div>
+    <div class="legend-item"><div class="color-box color-practica"></div> Práctica</div>
+    <div class="legend-item"><div class="color-box color-complementaria"></div> Complementaria</div>
+    <div class="legend-item"><div class="color-box color-electiva"></div> Electiva</div>
+    <div class="legend-item"><div class="color-box color-profesional"></div> Profesional</div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">1º Año</div>
+  <div class="tab" onclick="showTab(1)">2º Año</div>
+  <div class="tab" onclick="showTab(2)">3º Año</div>
+  <div class="tab" onclick="showTab(3)">4º Año</div>
+  <div class="tab" onclick="showTab(4)">5º Año</div>
+</div>
+
+<div id="tab-content">
+  <div class="content active" data-year="0">
+    <div class="materia teorica" data-id="icc" onclick="toggleAprobada(this)">Introducción al Conocimiento Científico – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="hsg" onclick="toggleAprobada(this)">Historia Social General – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="introcom" onclick="toggleAprobada(this)">Introducción a la Comunicación – 8 créditos – Teórica</div>
+  </div>
+  <div class="content" data-year="1">
+    <div class="materia teorica" data-id="eoe1" onclick="toggleAprobada(this)">Taller de Expresión Oral y Escrita I – 8 créditos – Teórica</div>
+    <div class="materia teorica" data-id="psyp" onclick="toggleAprobada(this)">Historia del Pensamiento Social y Político – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="ling" onclick="toggleAprobada(this)">Lingüística – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="eoe2" onclick="toggleAprobada(this)">Taller de Expresión Oral y Escrita II – 8 créditos – Teórica</div>
+    <div class="materia teorica" data-id="psa" onclick="toggleAprobada(this)">Problemas Socioeconómicos Argentinos – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="hcam" onclick="toggleAprobada(this)">Historia del Arte Moderno y Contemporáneo – 6 créditos – Teórica</div>
+  </div>
+  <div class="content" data-year="2">
+    <div class="materia complementaria" data-id="tc1" onclick="toggleAprobada(this)">Teorías de la Comunicación I – 6 créditos – Complementaria</div>
+    <div class="materia teorica" data-id="hsmc1" onclick="toggleAprobada(this)">Historia Social de los Medios de Comunicación I – 6 créditos – Teórica</div>
+    <div class="materia complementaria" data-id="mis" onclick="toggleAprobada(this)">Metodología de la Investigación Social – 6 créditos – Complementaria</div>
+    <div class="materia complementaria" data-id="tc2" onclick="toggleAprobada(this)">Teorías de la Comunicación II – 6 créditos – Teórica</div>
+    <div class="materia complementaria" data-id="sem" onclick="toggleAprobada(this)">Semiótica – 6 créditos – Complementaria</div>
+    <div class="materia practica" data-id="tgc" onclick="toggleAprobada(this)">Taller de Comunicación Gráfica – 8 créditos – Práctica</div>
+  </div>
+  <div class="content" data-year="3">
+    <div class="materia practica" data-id="tav" onclick="toggleAprobada(this)">Taller de Comunicación Audiovisual – 8 créditos – Práctica</div>
+    <div class="materia practica" data-id="ena" onclick="toggleAprobada(this)">Estructuras Narrativas Audiovisuales – 6 créditos – Práctica</div>
+    <div class="materia teorica" data-id="hmnl" onclick="toggleAprobada(this)">Historia de los Medios Nacional y Latinoamericano – 6 créditos – Teórica</div>
+    <div class="materia teorica" data-id="dc" onclick="toggleAprobada(this)">Derecho de las Comunicaciones – 6 créditos – Teórica</div>
+    <div class="materia complementaria" data-id="est" onclick="toggleAprobada(this)">Estadística I – 6 créditos – Complementaria</div>
+  </div>
+  <div class="content" data-year="4">
+    <div class="materia electiva" data-id="idioma" onclick="toggleAprobada(this)">Idioma Optativo (Inglés, Francés o Portugués) – 3 créditos – Electiva</div>
+    <div class="materia electiva" data-id="talleropt" onclick="toggleAprobada(this)">Taller Optativo – 3 créditos – Electiva</div>
+    <div class="materia practica" data-id="ppp" onclick="toggleAprobada(this)">Práctica Pre-profesional – 12 créditos – Práctica Profesional</div>
+  </div>
+</div>
+
+<script>
+  function showTab(index) {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+    tabs.forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+      contents[i].classList.toggle('active', i === index);
+    });
+  }
+
+  function toggleAprobada(el) {
+    el.classList.toggle('aprobada');
+    const id = el.dataset.id;
+    if (!id) return;
+
+    let aprobadas = JSON.parse(localStorage.getItem('materiasAprobadas') || '[]');
+    if (el.classList.contains('aprobada')) {
+      if (!aprobadas.includes(id)) aprobadas.push(id);
+    } else {
+      aprobadas = aprobadas.filter(i => i !== id);
+    }
+    localStorage.setItem('materiasAprobadas', JSON.stringify(aprobadas));
+  }
+
+  function restaurarAprobadas() {
+    const aprobadas = JSON.parse(localStorage.getItem('materiasAprobadas') || '[]');
+    document.querySelectorAll('.materia').forEach(el => {
+      const id = el.dataset.id;
+      if (aprobadas.includes(id)) {
+        el.classList.add('aprobada');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', restaurarAprobadas);
+</script>
+
+</body>
+</html>
